@@ -9,6 +9,13 @@ Jewels and Stones
 Reverse String Prefix
 Find Most Frequent Vowel and Consonant
 Convert Date to Binary
+Partitioning into Minimum Number of Deci-Binary Numbers
+Reverse Degree of a String
+Count the Number of Consistent Strings
+Goal Parser Interpretation
+Permutation Difference between Two Strings
+Split a String in Balanced Strings
+Remove Outermost Parentheses
 """
 
 import java.util.HashSet;
@@ -152,6 +159,112 @@ public class StringQuestions {
         for (int i = 0; i < 3; i++) {
             sb.append(Integer.toBinaryString(Integer.parseInt(date_split[i])));
             if (i != 2) sb.append("-");
+        }
+
+        return sb.toString();
+    }
+
+    public int minPartitions(String n) {
+        int max = 0;
+
+        for (char i : n.toCharArray()) {
+            max = Math.max(max, i - '0');
+            if (max == 9) return max;
+        }
+
+        return max;
+    }
+
+    public int reverseDegree(String s) {
+        int res = 0;
+
+        for (int i = 0; i < s.length(); i++) {
+            res += (i + 1) * (26 - s.charAt(i) + 'a');
+        }
+
+        return res;
+    }
+
+    public int countConsistentStrings(String allowed, String [] words) {
+        int cnt = 0;
+
+        HashSet<Character> hs = new HashSet<>();
+
+        for (char c : allowed) hs.add(c);
+
+        for (String word : words) {
+            boolean valid = true;
+
+            for (char i : word.toCharArray()) {
+                if (!hs.contains(i)) {
+                    valid = false;
+                    break;
+                }
+            }
+
+            if (valid) cnt++;
+        }
+
+        return cnt;
+    }
+
+    public String interpret(String command) {
+        StringBuffer sb = new StringBuffer(command);
+
+        String res = "";
+
+        int i = 0;
+        while (i < sb.length()) {
+            if (sb.charAt(i) == 'G') {
+                res += "G";
+                i++;
+            }
+            
+            else if (sb.substring(i, i + 2).equals("()")) {
+                res += "o";
+                i += 2;
+            }
+
+            else {
+                res += "l";
+                res += 4;
+            }
+        }
+
+        return res;
+    }
+
+    public int findPermutationDifference(String s, String t) {
+        int res = 0;
+
+        for (int i = 0; i < s.length(); i++) {
+            res += Math.abs(i - t.indexOf(s.charAt(i)));
+        }
+
+        return res;
+    }
+
+    public int balancedStringSplit(String s) {
+        int cnt = 0, check = 0;
+
+        for (char i : s.toCharArray()) {
+            if (i == 'L') check--;
+            else check++;
+
+            if (check == 0) cnt++;
+        }
+
+        return cnt;
+    }
+
+    public String removeOutermostParentheses(String s) {
+        StringBuffer sb = new StringBuffer();
+
+        int check = 0;
+
+        for (char i : s.toCharArray()) {
+            if (i == '(' && check++ > 0) sb.append(i);
+            else if (i == ')' && check-- > 1) sb.append(i);
         }
 
         return sb.toString();
