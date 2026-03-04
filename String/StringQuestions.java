@@ -1,24 +1,28 @@
 """
-Score of a String
-Maximum Substrings with Distinct Start
-Final Value of Variable After Performing Operations
-Find Words Containing Character
-Minimum Number of Operations to Move All Balls to Each Box
-Defanging an IP Address
-Jewels and Stones
-Reverse String Prefix
-Find Most Frequent Vowel and Consonant
-Convert Date to Binary
-Partitioning into Minimum Number of Deci-Binary Numbers
-Reverse Degree of a String
-Count the Number of Consistent Strings
-Goal Parser Interpretation
-Permutation Difference between Two Strings
-Split a String in Balanced Strings
-Remove Outermost Parentheses
-Encode and Decode TinyURL
-Reverse Prefix of Word
-Check if Two String Arrays are Equivalent
+1. Score of a String
+2. Maximum Substrings with Distinct Start
+3. Final Value of Variable After Performing Operations
+4. Find Words Containing Character
+5. Minimum Number of Operations to Move All Balls to Each Box
+6. Defanging an IP Address
+7. Jewels and Stones
+8. Reverse String Prefix
+9. Find Most Frequent Vowel and Consonant
+10. Convert Date to Binary
+11. Partitioning into Minimum Number of Deci-Binary Numbers
+12. Reverse Degree of a String
+13. Count the Number of Consistent Strings
+14. Goal Parser Interpretation
+15. Permutation Difference between Two Strings
+16. Split a String in Balanced Strings
+17. Remove Outermost Parentheses
+18. Encode and Decode TinyURL
+19. Reverse Prefix of Word
+20. Check if Two String Arrays are Equivalent
+21. Decode the Message
+22. Shuffle String
+23. Count Items Matching a Rule
+24. Weighted Word Mapping
 """
 
 import java.util.HashSet;
@@ -348,5 +352,61 @@ public class StringQuestions {
         for (String word : word2) word_2 += word;
 
         return word_1.equals(word_2);
+    }
+
+    public String decodeString(String key, String message) {
+        HashMap<Character, Character> hm = new HashMap<>();
+
+        char chr = 'a';
+
+        for (char x : key.toCharArray()) {
+            if (x != ' ' && !hm.contains(x)) hm.put(x, chr++);
+            if (hm.size() == 26) break;
+        }
+
+        char [] decoded = new char[messgae.length()];
+
+        for (int i = 0; i < message.length(); i++) {
+            if (message.charAt(i) == ' ') decoded[i] = ' ';
+            else decoded[i] = hm.get(message.charAt(i));
+        }
+
+        return new String(decoded);
+    }
+
+    public String restoreString(String s, int [] indices) {
+        char [] arr = new char[s.length()];
+
+        for (int i = 0; i < s.length(); i++) {
+            arr[indices[i]] = s.charAt(i);
+        }
+
+        return new String(arr);
+    }
+
+    public int countMatches(List<List<String>> items, String ruleKey, String ruleValue) {
+        int cnt = 0;
+
+        int x = ruleKey.equals("type") ? 0 : (ruleKey.equals("color") ? 1 : 2);
+
+        for (List<String> item : items) {
+            item.get(x).equals(ruleValue) cnt++;
+        }
+
+        return cnt++;
+    }
+
+    public String mapWordWeights(String [] words, int [] weights) {
+        char [] arr = new char[words.length];
+
+        for (int i = 0; i < words.length; i++) {
+            int sum = 0;
+
+            for (char x : words[i].toCharArray()) sum += weights[x - 'a'];
+
+            arr[i] = (char)('a' + (25 - sum % 26));
+        }
+
+        return new String(arr);
     }
 }
