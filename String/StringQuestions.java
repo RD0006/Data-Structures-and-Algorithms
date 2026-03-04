@@ -17,6 +17,8 @@ Permutation Difference between Two Strings
 Split a String in Balanced Strings
 Remove Outermost Parentheses
 Encode and Decode TinyURL
+Reverse Prefix of Word
+Check if Two String Arrays are Equivalent
 """
 
 import java.util.HashSet;
@@ -321,5 +323,30 @@ public class StringQuestions {
                 )
             );
         }
+    }
+
+    public String reversePrefix(String word, char ch) {
+        int x = word.indexOf(ch) + 1;
+
+        char [] arr = word.toCharArray();
+
+        for (int i = 0; i < x / 2; i++) {
+            char temp = arr[i];
+            arr[i] = arr[x - i - 1];
+            arr[x - i - 1] = temp;
+        }
+
+        return new String(arr);
+    }
+
+    public boolean arrayStringsAreEqual(String [] word1, String [] word2) {
+        String word_1 = "";
+        String word_2 = "";
+
+        for (String word : word1) word_1 += word;
+
+        for (String word : word2) word_2 += word;
+
+        return word_1.equals(word_2);
     }
 }
