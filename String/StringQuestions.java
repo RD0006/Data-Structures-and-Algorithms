@@ -16,9 +16,11 @@ Goal Parser Interpretation
 Permutation Difference between Two Strings
 Split a String in Balanced Strings
 Remove Outermost Parentheses
+Encode and Decode TinyURL
 """
 
 import java.util.HashSet;
+import java.util.HashMap;
 
 public class StringQuestions {
     
@@ -294,5 +296,30 @@ public class StringQuestions {
         }
 
         return sb.toString();
+    }
+
+    public class Codec { 
+
+        HashMap<Integer, String> hm = new HashMap<>();
+
+        int cnt = 1;
+
+        private static final String base = "http://tinyurl.com/abcd";
+
+        public String encode(String longUrl) {
+            String tinyUrl = base + cnt;
+
+            hm.put(cnt++, longUrl);
+
+            return tinyUrl;
+        }
+
+        public String decode(String shortUrl) {
+            return hm.get(
+                Integer.parseInt(
+                    shortUrl.substring(shortUrl.indexOf('d') + 1, shortUrl.length());
+                )
+            );
+        }
     }
 }
