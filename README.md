@@ -1,5 +1,14 @@
 # Data Structures and Algorithms
 
+DSA Practice Repository.<br/>
+Contains practice codes and LeetCode solutions.
+
+## Array
+
+
+## Matrix/Grid
+
+
 ## Strings
 1. Score of a String
 2. Maximum Substrings with Distinct Start
@@ -25,3 +34,33 @@
 22. Shuffle String
 23. Count Items Matching a Rule
 24. Weighted Word Mapping
+
+## Recursion
+ 
+## Stack
+
+## Queue
+
+## Linked List
+
+## Heap
+
+## Hashing
+
+## Tree
+
+## Graph
+
+## Sliding Window Technique
+
+## Two Pointer Technique
+
+## Searching Algorithms
+
+## Sorting Algorithms
+
+## Greedy Algorithms
+
+## Backtracking
+
+## Dynamic Programming
